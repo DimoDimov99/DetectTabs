@@ -47,5 +47,5 @@ python3 detect_tabs.py <filename.py> replace
 ### Detailted output
 ![check_output](check_output.png)
 
-###Short output
+### Short output
 ![short_check_output](short_check_output.png)
