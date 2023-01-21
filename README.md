@@ -10,30 +10,36 @@ There is also check-short which option which print only the line number with les
 * The 'replace' argument opens and scan the file for TABs usage, if found any then generate a new file called <"filename_tabs_removed"> where TABs usage is replace with spaces
 
 ### How to execute and example usages:
+### Usage with check argument
 ### Provided check argument which return all lines of the provided file and if there is any TABs usage on certain line, the TABs usage is reported detailed
 ```
-example usage with 'check' argument: python3 detect_tabs.py <filename> check
-
+python3 detect_tabs.py <filename> check
 ```
 
+### Usage with check-short argument
 ### Provided check-short argument which return all lines of the provided file if any TABs usage is encountered, but it display only the line number without the content of the line.
 ```
-example usage with 'check-short' argument: python3 detect_tabs.py <filename> check-short
-
+python3 detect_tabs.py <filename> check-short
 ```
+
+### Usage with replace argument (not a python file)
 ### Provided replace argument for file different than python. It goes trough the file and if there is any TABs usages, they are replaced with spaces (1 tab = 8 spaces). The new content is outputed to "<filename_tabs_removed>"file
-```
-example usage with 'replace' argument: python3 detect_tabs.py <filename> replace
 
 ```
+python3 detect_tabs.py <filename> replace
+```
+
+### Usage with replace argument (python file)
 ### Provided replace argument for python file. It goes trough the file and if there is any TABs usages, they are replaced with spaces (1 tab = 4 spaces, PEP8). The new content is outputed to "<filename_tabs_removed>"file
-```
-example usage with 'replace' argument and not default tab to space value: python3 detect_tabs.py <filename> <10> replace
 
 ```
+python3 detect_tabs.py <filename> <10> replace
+```
+
+### Usage with replace argument and custom space to TABS conversion (integer number)
 ### Provided replace argument for file with optional argument for number (1 tab = provided number of spaces). It goes trough the file and if there is any TABs usages, they are replaced with spaces. The new content is outputed to "<filename_tabs_removed>"file
-```
-example usage with 'replace' argument and .py file: python3 detect_tabs.py <filename.py> replace
 
+```
+python3 detect_tabs.py <filename.py> replace
 ```
 
