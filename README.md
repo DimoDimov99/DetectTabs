@@ -43,5 +43,9 @@ python3 detect_tabs.py <filename> <10> replace
 python3 detect_tabs.py <filename.py> replace
 ```
 ### Example screenshots
+
+### Detailted output
 ![check_output](check_output.png)
+
+###Short output
 ![short_check_output](short_check_output.png)
