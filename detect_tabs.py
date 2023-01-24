@@ -3,6 +3,7 @@
 import sys
 import os
 import time
+from datetime import datetime
 from colors import Colors
 from utils import PROGRAM_NAME, help, clear
 
@@ -15,6 +16,8 @@ def read_file(filename):
             return file.readlines()
     except FileNotFoundError:
         sys.exit(f"{Colors.FAIL}File [{filename}] was not found!")
+    except UnicodeDecodeError:
+        sys.exit("Invalid file format!")
 
 
 def detect_if_python_file(filename):
@@ -41,6 +44,10 @@ def create_report_directory():
     except FileExistsError:
         os.chdir(path)
     os.chdir(path)
+
+
+def add_timestamp():
+    return f"[{datetime.now().strftime('%B %d %Y %H:%M:%S')}]"
 
 
 def detect_for_tabs(filename, short=False):
@@ -84,6 +91,7 @@ def detect_for_tabs(filename, short=False):
     if save_report == "Y":
         create_report_directory()
         time.sleep(1)
+        tempt_report_storage.append(f"\nReport generated at: {add_timestamp()}")
         save_to_file(f"{filename}_report", tempt_report_storage)
         print(f"{Colors.OKGREEN}Report saved!")
     else:
