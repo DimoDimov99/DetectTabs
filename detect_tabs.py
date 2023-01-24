@@ -50,8 +50,14 @@ def add_timestamp():
     return f"[{datetime.now().strftime('%B %d %Y %H:%M:%S')}]"
 
 
+def display_analys_summary(report):
+    for data in report:
+        print(data)
+
+
 def detect_for_tabs(filename, short=False):
     tempt_report_storage = []
+    tempt_output_storage = []
     clear()
     tab_usage_counter = 0
     lines = read_file(filename)
@@ -65,26 +71,35 @@ def detect_for_tabs(filename, short=False):
                 tempt_report_storage.append(
                     f"Line [{line_num + 1}]: {line} [TAB USAGE FOUND]\n"
                 )
-                print(f"{Colors.FAIL}Line [{line_num + 1}]: {line} [TAB USAGE FOUND]")
+                tempt_output_storage.append(
+                    f"{Colors.FAIL}Line [{line_num + 1}]: {line} [TAB USAGE FOUND]"
+                )
             else:
                 tempt_report_storage.append(
                     f"[TAB USAGE FOUND] found on line: [{line_num + 1}]\n"
                 )
-                print(f"{Colors.FAIL}[TAB USAGE FOUND] found on line: [{line_num + 1}]")
+                tempt_output_storage.append(
+                    f"{Colors.FAIL}[TAB USAGE FOUND] found on line: [{line_num + 1}]"
+                )
         if not short and "\t" not in line:
             tempt_report_storage.append(f"Line [{line_num + 1}]: {line}\n")
-            print(f"{Colors.OKGREEN}Line [{line_num + 1}]: {line}")
+            tempt_output_storage.append(
+                f"{Colors.OKGREEN}Line [{line_num + 1}]: {line}"
+            )
     tempt_report_storage.append(f"-------------------[summary]----------------------\n")
-    print(f"{Colors.DEFAULT}-------------------[summary]----------------------")
+    tempt_output_storage.append(f"-------------------[summary]----------------------\n")
     if tab_usage_counter > 0:
         tempt_report_storage.append(
             f"[Total TAB usages detected]: [{tab_usage_counter}]\n"
         )
-        print(f"{Colors.FAIL}[Total TAB usages detected]: [{tab_usage_counter}]")
+        tempt_output_storage.append(
+            f"{Colors.FAIL}[Total TAB usages detected]: [{tab_usage_counter}]"
+        )
     else:
         tempt_report_storage.append("[No TAB usage detected]\n")
-        print(f"{Colors.OKGREEN}[No TAB usage detected]")
-
+        tempt_output_storage.append(f"{Colors.OKGREEN}[No TAB usage detected]")
+    # output the report into terminal:
+    display_analys_summary(tempt_output_storage)
     save_report = input(
         f"{Colors.DEFAULT}Do you want to save the report to a file?: (Y/N): "
     ).upper()
